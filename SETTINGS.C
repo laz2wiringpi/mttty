@@ -43,9 +43,10 @@
 
 #include <windows.h>
 #include <stdio.h>
+#include <conio.h>
 #include "mttty.h"
 
-#define MAXLEN_TEMPSTR  20
+#define MAXLEN_TEMPSTR  30
 
 /*
     Prototypes for functions called only within this file
@@ -477,7 +478,7 @@ BOOL SettingsDlgInit( HWND hDlg )
     WORD wCount, wMaxCOM, wPosition ;
 
     wMaxCOM = MAXPORTS ;
-    _tcscpy_s(szTemp, MAXLEN_TEMPSTR, _T("COM"));
+    _tcscpy_s(szTemp, MAXLEN_TEMPSTR, _T("\\\\.\\COM"));
 
     //
     // fill port combo box and make initial selection

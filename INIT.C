@@ -34,6 +34,10 @@
 #include <commctrl.h>
 #include "mttty.h"
 
+
+#pragma comment(lib, "Comctl32")
+#pragma comment(lib, "Winmm")
+
 /*
     Prototypes for functions called only within this file
 */
@@ -49,6 +53,8 @@ DWORD WaitForThreads( DWORD );
 */
 COMMTIMEOUTS gTimeoutsDefault = { 0x01, 0, 0, 0, 0 };
 
+	INITCOMMONCONTROLSEX InitCtrlEx;
+//INITCOMMONCONTROLSEX InitCtrlEx;
 
 /*-----------------------------------------------------------------------------
 
@@ -90,7 +96,13 @@ void GlobalInitialize()
     //
     // used in file transfer status bar
     //
-    InitCommonControls();
+ 
+//InitCommonControls();
+
+InitCtrlEx.dwSize = sizeof(INITCOMMONCONTROLSEX);
+InitCtrlEx.dwICC = ICC_PROGRESS_CLASS;
+InitCommonControlsEx(&InitCtrlEx); //instead of InitCommonControls()
+
 
     //
     // font for status reporting control
@@ -388,6 +400,7 @@ HANDLE SetupCommPort()
     //
     // open communication port handle
     //
+	 
     COMDEV( TTYInfo ) = CreateFile( gszPort,  
                                       GENERIC_READ | GENERIC_WRITE, 
                                       0, 

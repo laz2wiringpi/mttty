@@ -18,9 +18,12 @@
 // File: MTTTY.h
 //
 #include <TCHAR.H>
-#include "strsafe.h"
+#include <strsafe.h>
 #include "resource.h"
 #include "ttyinfo.h"
+
+
+
 
 //
 // GLOBAL DEFINES
@@ -128,7 +131,7 @@ struct STATUS_MESSAGE * glpStatusMessageTail;
 //
 //  Port name
 //
-TCHAR gszPort[10];
+TCHAR gszPort[20];
 
 //
 //  Writer heap variables
